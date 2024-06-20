@@ -7,7 +7,9 @@ const Header = () => {
     <div>
       <header className={styles.headerSection}>
         <div className={styles.headerContent}>
-          <h2 className={styles.logoText}>Killow.</h2>
+          <Link to={`/`}>
+            <h2 className={styles.logoText}>Killow.</h2>
+          </Link>
           <form className={styles.formSection}>
             <input
               type="text"
@@ -17,13 +19,13 @@ const Header = () => {
             <FaSearch className={styles.searchIcon} />
           </form>
           <ul className={styles.menuSection}>
-            <Link to={`/`} className={styles.menuItem}>
+            <Link to={`/`} className={styles.menuItemHidden}>
               Home
             </Link>
-            <Link to={`/about`} className={styles.menuItem}>
+            <Link to={`/about`} className={styles.menuItemHidden}>
               About
             </Link>
-            <Link to={`/sign-in`} className={styles.menuItem}>
+            <Link to={`/sign-in`} className={styles.menuItemShow}>
               Sign in
             </Link>
           </ul>
