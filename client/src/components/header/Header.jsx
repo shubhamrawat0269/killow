@@ -4,7 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div>
+    <div className={styles.sectionWrapper}>
       <header className={styles.headerSection}>
         <div className={styles.headerContent}>
           <Link to={`/`}>

@@ -1,5 +1,9 @@
+.sectionWrapper {
+    @apply flex flex-col h-screen w-screen;
+}
+
 .headerSection {
-    @apply bg-slate-200 shadow-md;
+    @apply bg-slate-200 shadow-md h-[10vh];
 }
 
 .headerContent {
