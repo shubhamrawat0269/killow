@@ -11,8 +11,7 @@ const checkValidUser = async (email, password) => {
   const validPassword = bcryptjs.compareSync(password, validUser.password);
   if (!validPassword) return {};
 
-  const { password: pass, ...userData } = validUser;
-  return { userData };
+  return { validUser };
 };
 
 module.exports = { createUser, checkValidUser };

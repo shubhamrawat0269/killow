@@ -42,22 +42,23 @@ const signin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const { userData } = await userService.checkValidUser(email, password);
+    const { validUser } = await userService.checkValidUser(email, password);
 
-    if (!userData?.email) {
+    if (!validUser?.email) {
       return res.status(401).json({
         message: `Wrong Credentials`,
       });
     }
 
-    const token = jwt.sign({ id: userData._id }, process.env.JWT_SECRET);
-
+    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+    const { username } = validUser;
     return res
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
       .json({
         message: `Sign In Successfully`,
-        data: userData,
+        username,
+        token,
       });
   } catch (error) {
     return res.status(500).json({

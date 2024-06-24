@@ -1,0 +1,31 @@
+.signinSection {
+    @apply bg-slate-800 flex justify-center items-center h-[90vh]
+}
+
+.signinContainer {
+    @apply bg-white px-3 lg:px-7 py-10 shadow-lg
+}
+
+.signinTitle {
+    @apply mb-5
+}
+
+.heading {
+    @apply text-center text-4xl font-bold text-black
+}
+
+.navigateToSignupSection {
+    @apply p-2 text-center
+}
+
+.signinInputBox {
+    @apply bg-gray-50 border border-gray-400 px-2 py-2 w-96 rounded-md outline-none placeholder-gray-400
+}
+
+.btnContainer {
+    @apply flex flex-col gap-3
+}
+
+.signinBtn {
+    @apply bg-slate-800 hover:bg-slate-600 w-full text-white text-center py-2 font-bold rounded-md
+}
