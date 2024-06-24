@@ -3,14 +3,18 @@ import styles from "./Signin.module.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { signInStart, signInSuccess } from "../../store/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Signin = () => {
   const [userSigninData, setUserSigninData] = useState({
     email: "",
     password: "",
   });
+  const { loading } = useSelector((state) => state.userData);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleUserSignIn = (e) => {
     const { name, value } = e.target;
@@ -27,15 +31,17 @@ const Signin = () => {
     // Api Call
     const API_URL = `http://localhost:8082/auth/signin`;
     try {
+      dispatch(signInStart());
       const res = await axios.post(API_URL, userSigninData);
       console.log(res);
 
       if (res.status === 200) {
         toast.success(res.data.message);
+        dispatch(signInSuccess(res.data.data));
         navigate("/");
       }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       toast.error(error.response.data.message);
       setUserSigninData({
         email: "",
@@ -75,7 +81,9 @@ const Signin = () => {
             />
           </div>
           <div className={styles.btnContainer}>
-            <button className={styles.signinBtn}>Signin</button>
+            <button className={styles.signinBtn}>
+              {loading ? "Loading..." : "Signin"}
+            </button>
           </div>
         </form>
         <p className={styles.navigateToSignupSection}>
